@@ -8,12 +8,12 @@
 
 class Warehouse {
     public:
-        std::vector<Employee> Employees;
-        std::vector<Shelf> Shelves;
+        std::vector<Employee> employees;
+        std::vector<Shelf> shelves;
         
         Warehouse();
-        void addEmployee(Employee Employee);
-        void addShelf(Shelf Shelf);
-        bool rearrangeShelf(Shelf& Shelf);
+        void addEmployee(Employee employee);
+        void addShelf(Shelf shelf);
+        bool rearrangeShelf(Shelf& shelf);
         bool pickItems(std::string itemName, int itemCount);
 };
