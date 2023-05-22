@@ -20,4 +20,44 @@ std::string Pallet::getItemName() {
     return this->itemName;
 }
 
-// todo: implement functie voor "bool isEmpty() override;"
+int Pallet::getItemCount() {
+    return this->itemCount;
+}
+
+int Pallet::getRemainingSpace() {
+    return this->itemCapacity - this->itemCount;
+}
+
+bool Pallet::reallocateEmptyPallet(std::string itemName, int itemCapacity) {
+    if (this->isEmpty()) {
+        this->itemName = itemName;
+        this->itemCapacity = itemCapacity;
+        return true;
+    }
+    return false;
+}
+
+bool Pallet::takeOne() {
+    if (!this->isEmpty()) {
+        this->itemCount--;
+        return true;
+    }
+    return false;
+}
+
+bool Pallet::putOne() {
+    if (!this->isFull()) {
+        this->itemCount++;
+        return true;
+    }
+    return false;
+}
+
+// Check of dit klopt
+bool Pallet::isEmpty() {
+    return this->itemCount == 0;
+}
+
+bool Pallet::isFull() {
+    return this->itemCount == this->itemCapacity;
+}

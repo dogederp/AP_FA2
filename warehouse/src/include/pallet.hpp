@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "IContainer.hpp"
+
+#include "IContainer.hpp"  //interface
 
 class Pallet: public IContainer {
     private:
@@ -20,5 +21,6 @@ class Pallet: public IContainer {
         bool putOne();
 
         bool isEmpty() override;
+        bool isFull() override;
 };
 
