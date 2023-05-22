@@ -53,7 +53,6 @@ bool Pallet::putOne() {
     return false;
 }
 
-// Check of dit klopt
 bool Pallet::isEmpty() {
     return this->itemCount == 0;
 }
