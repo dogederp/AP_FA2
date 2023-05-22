@@ -1,11 +1,10 @@
-#pragma once
 #include <iostream>
 #include <string>
 
 #include "include/employee.hpp"
 
 Employee::Employee(std::string name, bool forkliftCertificate)
-    : name(name), forkliftCertificate(forkliftCertificate), busy(false) {
+    : name(name), busy(false), forkliftCertificate(forkliftCertificate){
 }
 
 std::string Employee::getName() {

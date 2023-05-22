@@ -4,7 +4,7 @@
 
 class Employee {
     private:
-        const std::string name;
+        const std::string name;  //TODO: zorg ervoor dat Employee(std::string name, bool forkliftCertificate) werkt
         bool busy;
         bool forkliftCertificate;
 

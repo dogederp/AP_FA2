@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include <vector>
 
@@ -23,9 +22,9 @@ bool Warehouse::rearrangeShelf(Shelf& shelf) {
     if (shelf.isEmpty()) {
         return false;
     }
-    for (int i = 0; i < shelf.pallets.size(); i++) {
+    for (unsigned int i = 0; i < shelf.pallets.size(); i++) {
         if (shelf.pallets[i].isEmpty()) {
-            for (int j = i + 1; j < shelf.pallets.size(); j++) {
+            for (unsigned int j = i + 1; j < shelf.pallets.size(); j++) {
                 if (!shelf.pallets[j].isEmpty()) {
                     shelf.swapPallet(i, j);
                     return true;
@@ -37,8 +36,8 @@ bool Warehouse::rearrangeShelf(Shelf& shelf) {
 }
 
 bool Warehouse::pickItems(std::string itemName, int itemCount) {
-    for (int i = 0; i < shelves.size(); i++) {
-        for (int j = 0; j < shelves[i].pallets.size(); j++) {
+    for (unsigned int i = 0; i < shelves.size(); i++) {
+        for (unsigned int j = 0; j < shelves[i].pallets.size(); j++) {
             if (shelves[i].pallets[j].getItemName() == itemName) {
                 if (shelves[i].pallets[j].getItemCount() >= itemCount) {
                     for (int k = 0; k < itemCount; k++) {
