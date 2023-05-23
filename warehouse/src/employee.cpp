@@ -3,8 +3,8 @@
 
 #include "include/employee.hpp"
 
-Employee::Employee(std::string _Name, bool forkliftCertificate)
-    : name(_Name), busy(false), forkliftCertificate(forkliftCertificate){
+Employee::Employee(std::string newName, bool forkliftCertificate)
+    : name(newName), busy(false), forkliftCertificate(forkliftCertificate){
 }
 
 std::string Employee::getName() {

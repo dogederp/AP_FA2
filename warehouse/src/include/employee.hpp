@@ -9,7 +9,7 @@ class Employee {
         bool forkliftCertificate;
 
     public:
-        Employee(std::string _Name, bool forkliftCertificate);
+        Employee(std::string newName, bool forkliftCertificate);
         std::string getName();
         bool getBusy();
         void setBusy(bool busy);
