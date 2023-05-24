@@ -113,7 +113,7 @@ TEST_CASE("Rearrange full shelf", "Warehouse::rearrangeShelf"){
 
     // Check if shelf is already arranged.
     // This shelf should not already be arranged.
-    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 20);  //failed
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 20);
     REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 40);
     REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
     REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 10);
@@ -147,7 +147,7 @@ TEST_CASE("Rearrange half filled shelf", "Warehouse::rearrangeShelf"){
 
     // Check if shelf is already arranged.
     // This shelf should not already be arranged.
-    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 40);  //failed
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 40);
     REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 20);
     REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 0);
     REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 0);
@@ -181,7 +181,7 @@ TEST_CASE("Rearrange shelf without qualified employee", "Warehouse::rearrangeShe
 
     // Check if shelf is already arranged.
     // This shelf should not already be arranged.
-    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 20);  //failed
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 20);
     REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 40);
     REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
     REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 10);
@@ -189,7 +189,7 @@ TEST_CASE("Rearrange shelf without qualified employee", "Warehouse::rearrangeShe
     // Rearrange the first and only shelf of the warehouse.
     bool successful = warehouse.rearrangeShelf(warehouse.shelves[0]);
     // Should fail
-    REQUIRE(!successful);
+    REQUIRE(!successful);  //failed
 
     // Check if shelf is now correctly arranged.
     // Shelf should now still not be arranged.
@@ -218,7 +218,7 @@ TEST_CASE("Rearrange shelf with quallified, but busy, employee", "Warehouse::rea
 
     // Check if shelf is already arranged.
     // This shelf should not already be arranged.
-    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 20);  //failed
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 20);
     REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 40);
     REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
     REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 10);
@@ -226,7 +226,7 @@ TEST_CASE("Rearrange shelf with quallified, but busy, employee", "Warehouse::rea
     // Rearrange the first and only shelf of the warehouse.
     bool successful = warehouse.rearrangeShelf(warehouse.shelves[0]);
     // Should fail
-    REQUIRE(!successful);
+    REQUIRE(!successful);  //failed
 
     // Check if shelf is now correctly arranged.
     // Shelf should now still not be arranged.
