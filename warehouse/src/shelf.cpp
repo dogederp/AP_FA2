@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "include/shelf.hpp"
 
 Shelf::Shelf(){

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include "include/employee.hpp"
 #include "include/shelf.hpp"
@@ -20,6 +21,7 @@ void Warehouse::addShelf(Shelf shelf) {
 
 bool Warehouse::rearrangeShelf(Shelf& shelf) {
     if (shelf.isEmpty()) {
+        // std::cout << "Shelf is leeg" << std::endl;
         return false;
     }
     for (unsigned int i = 0; i < shelf.pallets.size(); i++) {
