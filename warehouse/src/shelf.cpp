@@ -10,10 +10,11 @@ bool Shelf::swapPallet(int slot, int slot2){
     Pallet temp = pallets[slot];
     pallets[slot] = pallets[slot2];
     pallets[slot2] = temp;
+    return true;
 }
 
 bool Shelf::isEmpty() {
-    for (int i = 0; i < pallets.size(); i++) {
+    for (unsigned int i = 0; i < pallets.size(); i++) {
         if (!pallets[i].isEmpty()) {
             return false;
         }
@@ -22,7 +23,7 @@ bool Shelf::isEmpty() {
 }
 
 bool Shelf::isFull() {
-    for (int i = 0; i < pallets.size(); i++) {
+    for (unsigned int i = 0; i < pallets.size(); i++) {
         if (!pallets[i].isFull()) {
             return false;
         }
