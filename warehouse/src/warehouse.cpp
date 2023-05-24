@@ -21,20 +21,19 @@ void Warehouse::addShelf(Shelf shelf) {
 
 bool Warehouse::rearrangeShelf(Shelf& shelf) {
     if (shelf.isEmpty()) {
-        // std::cout << "Shelf is leeg" << std::endl;
-        return false;
+        return true;
+    }
+    if (shelf.isFull()) {
+        return true;
     }
     for (unsigned int i = 0; i < shelf.pallets.size(); i++) {
-        if (shelf.pallets[i].isEmpty()) {
-            for (unsigned int j = i + 1; j < shelf.pallets.size(); j++) {
-                if (!shelf.pallets[j].isEmpty()) {
-                    shelf.swapPallet(i, j);
-                    return true;
-                }
+        for (unsigned int j = 0; j < shelf.pallets.size() - 1; j++) {
+            if (shelf.pallets[j].getItemCount() > shelf.pallets[j + 1].getItemCount()) {
+                shelf.swapPallet(j, j + 1);
             }
         }
     }
-    return false;
+    return true;
 }
 
 bool Warehouse::pickItems(std::string itemName, int itemCount) {

@@ -10,5 +10,7 @@
 
 
 int main(void){
+    Employee e("Karlo", true);
+    std::cout << e.getName();
     std::cout << "Hello world" << std::endl;
 }

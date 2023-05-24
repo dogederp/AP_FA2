@@ -218,7 +218,7 @@ TEST_CASE("Rearrange shelf with quallified, but busy, employee", "Warehouse::rea
 
     // Check if shelf is already arranged.
     // This shelf should not already be arranged.
-    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 20);  //failedd
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 20);  //failed
     REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 40);
     REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
     REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 10);

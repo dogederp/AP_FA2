@@ -3,7 +3,7 @@
 
 class Employee {
     private:
-        const std::string name;
+        std::string name;
         bool busy;
         bool forkliftCertificate;
 
