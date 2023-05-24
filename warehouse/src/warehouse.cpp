@@ -26,6 +26,7 @@ bool Warehouse::rearrangeShelf(Shelf& shelf) {
     if (shelf.isFull()) {
         return true;
     }
+    // TODO: check of werknemer die rearranget qualified is en check if werknemer busy is
     for (unsigned int i = 0; i < shelf.pallets.size(); i++) {
         for (unsigned int j = 0; j < shelf.pallets.size() - 1; j++) {
             if (shelf.pallets[j].getItemCount() > shelf.pallets[j + 1].getItemCount()) {
