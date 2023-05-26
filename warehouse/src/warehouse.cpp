@@ -47,6 +47,14 @@ bool Warehouse::rearrangeShelf(Shelf& shelf) {
             }
         }
     }
+    // employee hoeft niet meer busy te zijn
+    for (unsigned int i = 0; i < employees.size(); i++) {
+        if (employees[i].getForkliftCertificate() == true) {
+            if (employees[i].getBusy() == true) {
+                employees[i].setBusy(false);
+            }
+        }
+    }
     return true;
 }
 
