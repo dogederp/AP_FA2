@@ -29,7 +29,6 @@ bool Warehouse::rearrangeShelf(Shelf& shelf) {
         return true;
     }
     // check of er een qualified employee is
-    // for employee in employees
     for (unsigned int i = 0; i < employees.size(); i++) {
         if (employees[i].getForkliftCertificate() == true) {
             if (employees[i].getBusy() == false) {
@@ -52,17 +51,34 @@ bool Warehouse::rearrangeShelf(Shelf& shelf) {
 }
 
 bool Warehouse::pickItems(std::string itemName, int itemCount) {
+    // neem aantal items van pallet af, zolang er nog items nodig zijn en er nog pallets zijn met items
+    // als er geen pallets meer zijn met items, return false
+    // als er nog items nodig zijn, return false
+    // als er geen items meer nodig zijn, return true
+    bool itemsNeeded = true;
+    bool palletsAvailable = true;
     for (unsigned int i = 0; i < shelves.size(); i++) {
         for (unsigned int j = 0; j < shelves[i].pallets.size(); j++) {
             if (shelves[i].pallets[j].getItemName() == itemName) {
-                if (shelves[i].pallets[j].getItemCount() >= itemCount) {
-                    for (int k = 0; k < itemCount; k++) {
+                while (itemsNeeded == true && palletsAvailable == true) {
+                    if (shelves[i].pallets[j].getItemCount() > 0) {
                         shelves[i].pallets[j].takeOne();
-                        return true;
+                        itemCount--;
+                    }
+                    if (shelves[i].pallets[j].getItemCount() == 0) {
+                        palletsAvailable = false;
+                    }
+                    if (itemCount == 0) {
+                        itemsNeeded = false;
                     }
                 }
             }
         }
     }
-    return false;
+    if (itemCount == false) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
