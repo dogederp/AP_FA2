@@ -56,17 +56,20 @@ bool Warehouse::pickItems(std::string itemName, int itemCount) {
     // als er nog items nodig zijn, return false
     // als er geen items meer nodig zijn, return true
     bool itemsNeeded = true;
-    bool palletsAvailable = true;
+    bool pallet = true;
+    int itemsTaken = 0;
     for (unsigned int i = 0; i < shelves.size(); i++) {
         for (unsigned int j = 0; j < shelves[i].pallets.size(); j++) {
+            pallet = true;
             if (shelves[i].pallets[j].getItemName() == itemName) {
-                while (itemsNeeded == true && palletsAvailable == true) {
+                while (itemsNeeded == true && pallet == true) {
                     if (shelves[i].pallets[j].getItemCount() > 0) {
                         shelves[i].pallets[j].takeOne();
+                        itemsTaken++;
                         itemCount--;
                     }
                     if (shelves[i].pallets[j].getItemCount() == 0) {
-                        palletsAvailable = false;
+                        pallet = false;
                     }
                     if (itemCount == 0) {
                         itemsNeeded = false;
@@ -75,10 +78,11 @@ bool Warehouse::pickItems(std::string itemName, int itemCount) {
             }
         }
     }
-    if (itemCount == false) {
+    if (itemCount == 0) {
         return true;
     }
     else {
+        std::cout << "Total maximum items taken: " << itemsTaken << std::endl;
         return false;
     }
 }
