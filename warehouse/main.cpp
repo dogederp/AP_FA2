@@ -48,20 +48,32 @@ int main(void){
     std::cout << e.getName() << " staat ingeschreven in het warenhuis."<< std::endl;
     std::cout << e2.getName() << " is aanwezig voor mental support."<< std::endl;
     
-    std::cout << "Er zijn " << karloInc.employees.size() << " werknemers aanwezig." << std::endl;
+    std::cout << "Er zijn " << karloInc.employees.size() << " werknemers aanwezig totaal." << std::endl;
     std::cout << "Er zijn " << karloInc.shelves.size() << " schappen aanwezig." << std::endl;
 
-    std::cout << "Voordat shelf 3 gesorteerd wordt: " << karloInc.shelves[2].pallets[0].getItemCount()
-    << karloInc.shelves[2].pallets[1].getItemCount()
-    << karloInc.shelves[2].pallets[2].getItemCount() 
-    << karloInc.shelves[2].pallets[3].getItemCount() << std::endl;
+    std::cout << "Voordat shelf 3 gesorteerd wordt: " << karloInc.shelves[2].pallets[0].getItemCount() << " "<< karloInc.shelves[2].pallets[0].getItemName() << std::endl
+    << karloInc.shelves[2].pallets[1].getItemCount() << " "<< karloInc.shelves[2].pallets[1].getItemName() << std::endl
+    << karloInc.shelves[2].pallets[2].getItemCount() << " "<< karloInc.shelves[2].pallets[2].getItemName() << std::endl
+    << karloInc.shelves[2].pallets[3].getItemCount() << " "<< karloInc.shelves[2].pallets[3].getItemName() << std::endl;
 
     karloInc.rearrangeShelf(karloInc.shelves[2]);
 
-    std::cout << "Na het sorteren van shelf 3: " << karloInc.shelves[2].pallets[0].getItemCount()
-    << karloInc.shelves[2].pallets[1].getItemCount()
-    << karloInc.shelves[2].pallets[2].getItemCount()
-    << karloInc.shelves[2].pallets[3].getItemCount() << std::endl;
+    std::cout << "Na het sorteren van shelf 3: " << karloInc.shelves[2].pallets[0].getItemCount() << " "<< karloInc.shelves[2].pallets[0].getItemName() << std::endl
+    << karloInc.shelves[2].pallets[1].getItemCount() << " "<< karloInc.shelves[2].pallets[1].getItemName() << std::endl
+    << karloInc.shelves[2].pallets[2].getItemCount() << " "<< karloInc.shelves[2].pallets[2].getItemName() << std::endl
+    << karloInc.shelves[2].pallets[3].getItemCount() << " "<< karloInc.shelves[2].pallets[3].getItemName() << std::endl;
 
+    std::cout << "We nemen wat hopes, hebben we wel nodig" << std::endl;
 
+    karloInc.pickItems("Hopes", 420);
+
+    // std::cout << "Na het nemen van de hopes: " << karloInc.shelves[2].pallets[0].getItemCount() << " "<< karloInc.shelves[2].pallets[0].getItemName() << std::endl;
+    for (unsigned int i = 0; i < karloInc.shelves[2].pallets.size(); i++){
+        // print aantal hopes
+        if (karloInc.shelves[2].pallets[i].getItemName() == "Hopes"){
+            std::cout << "Na het nemen van de hopes: " << karloInc.shelves[2].pallets[i].getItemCount() << " "<< karloInc.shelves[2].pallets[i].getItemName() << std::endl;
+        }
+    }
+
+    karloInc.rearrangeShelf(karloInc.shelves[2]);
 }
