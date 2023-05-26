@@ -284,4 +284,37 @@ TEST_CASE("Pick items uit shelf, maar het zijn er te veel", "Warehouse::pickItem
     bool successful = warehouse.pickItems("Books", 200);
     // Should fail
     REQUIRE(!successful);
+
+    // Check if items are taken from shelf
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 0);
+    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 0);
+    REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 0);
+    REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 0);
+}
+
+TEST_CASE("Pick items uit shelf, helft van voorraad", "Warehouse::pickItems"){
+    Warehouse warehouse = Warehouse();
+    Shelf shelf1 = Shelf();
+    shelf1.pallets = {
+        Pallet("Books", 100, 20), 
+        Pallet("Books", 100, 40), 
+        Pallet("Books", 100, 30), 
+        Pallet("Books", 100, 10)
+    };
+    
+    Employee bert = Employee("Bert", true);
+
+    warehouse.addEmployee(bert);
+    warehouse.addShelf(shelf1);
+
+    // Take items from shelf
+    bool successful = warehouse.pickItems("Books", 50);
+    // Should succeed
+    REQUIRE(successful);
+
+    // Check if items are taken from shelf
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 0);
+    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 10);
+    REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
+    REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 10);
 }

@@ -11,6 +11,6 @@
 
 int main(void){
     Employee e("Karlo", true);
-    std::cout << e.getName();
+    std::cout << e.getName() << std::endl;
     std::cout << "Born to test, forced to main()" << std::endl;
 }
