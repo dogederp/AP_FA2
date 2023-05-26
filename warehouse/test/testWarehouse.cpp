@@ -318,3 +318,69 @@ TEST_CASE("Pick items uit shelf, helft van voorraad", "Warehouse::pickItems"){
     REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
     REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 10);
 }
+
+TEST_CASE("Pick verschillende items uit shelves", "Warehouse::pickItems"){
+    Warehouse warehouse = Warehouse();
+    Shelf shelf1 = Shelf();
+    shelf1.pallets = {
+        Pallet("Books", 100, 20), 
+        Pallet("Manga", 100, 40), 
+        Pallet("Hopes", 100, 30), 
+        Pallet("Dreams", 100, 10)
+    };
+    
+    Employee ernie = Employee("Ernie", true);
+
+    warehouse.addEmployee(ernie);
+    warehouse.addShelf(shelf1);
+
+    // Take books from shelf
+    bool successful = warehouse.pickItems("Books", 25);
+    // Should fail
+    REQUIRE(!successful);
+
+    // Take manga from shelf
+    successful = warehouse.pickItems("Manga", 20);
+    // Should succeed
+    REQUIRE(successful);
+
+    // Take manga from shelf
+    successful = warehouse.pickItems("Hopes", 30);
+    // Should succeed
+    REQUIRE(successful);
+
+
+    // Check if items are taken from shelf
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 0);
+    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 20);
+    REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 0);
+    REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 10);
+}
+
+TEST_CASE("Neem alleen wat Hoop uit de warehouse en niks anders", "Warehouse::pickItems"){
+    Warehouse warehouse = Warehouse();
+    Shelf shelf1 = Shelf();
+    shelf1.pallets = {
+        Pallet("Books", 100, 20), 
+        Pallet("Manga", 100, 40), 
+        Pallet("Hopes", 100, 30), 
+        Pallet("Dreams", 100, 10)
+    };
+    
+    Employee ernie = Employee("Ernie", true);
+
+    warehouse.addEmployee(ernie);
+    warehouse.addShelf(shelf1);
+
+    // Take manga from shelf
+    bool successful = warehouse.pickItems("Hopes", 15);
+    // Should succeed
+    REQUIRE(successful);
+
+
+    // Check if items are taken from shelf
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 20);
+    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 40);
+    REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 15);
+    REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 10);
+}
