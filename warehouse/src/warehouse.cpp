@@ -7,22 +7,27 @@
 #include "include/warehouse.hpp"
 
 Warehouse::Warehouse() {
+    // default constructor
     this->employees = employees;
     this->shelves = shelves;
 }
 
 void Warehouse::addEmployee(Employee employee) {
+    // Voeg een employee toe aan de vector van employees
     employees.push_back(employee);
 }
 
 void Warehouse::addShelf(Shelf shelf) {
+    // Voeg een shelf toe aan de vector van shelves
     shelves.push_back(shelf);
 }
 
 bool Warehouse::rearrangeShelf(Shelf& shelf) {
+    // Sorteer de pallets in een shelf op aantal items asc.
     bool qualifiedEmployee = false;
     
     if (shelf.isEmpty()) {
+        // als de shelf leeg is, return true, dit telt als gesorteerd
         return true;
     }
     if (shelf.isFull()) {
