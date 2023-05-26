@@ -20,13 +20,27 @@ void Warehouse::addShelf(Shelf shelf) {
 }
 
 bool Warehouse::rearrangeShelf(Shelf& shelf) {
+    bool qualifiedEmployee = false;
+    
     if (shelf.isEmpty()) {
         return true;
     }
     if (shelf.isFull()) {
         return true;
     }
-    // TODO: check of werknemer die rearranget qualified is en check if werknemer busy is
+    // check of er een qualified employee is
+    // for employee in employees
+    for (unsigned int i = 0; i < employees.size(); i++) {
+        if (employees[i].getForkliftCertificate() == true) {
+            if (employees[i].getBusy() == false) {
+                employees[i].setBusy(true);
+                qualifiedEmployee = true;
+            }
+        }
+    }
+    if (qualifiedEmployee == false) {
+        return false;
+    }
     for (unsigned int i = 0; i < shelf.pallets.size(); i++) {
         for (unsigned int j = 0; j < shelf.pallets.size() - 1; j++) {
             if (shelf.pallets[j].getItemCount() > shelf.pallets[j + 1].getItemCount()) {
